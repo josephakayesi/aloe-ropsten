@@ -54,5 +54,6 @@
     "artifacts",
     "contract",
     "assert"
-  ]
+  ],
+  "cacheDirectories": [".next/cache"]
 }
