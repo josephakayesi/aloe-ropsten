@@ -1,0 +1,56 @@
+{
+  "name": "aloe",
+  "version": "0.0.1",
+  "description": "a ethereum project that sells an nft called aloe",
+  "main": "index.js",
+  "scripts": {
+    "migrate:dev": "truffle migrate --reset --network development",
+    "migrate:ropsten": "truffle migrate --reset --network ropsten",
+    "mint:dev": "truffle exec ./ethereum/scripts/mint.js --network development",
+    "mint:ropsten": "truffle exec ./ethereum/scripts/mint.js --network ropsten",
+    "test": "truffle test",
+    "dev": "next dev"
+  },
+  "author": "Joseph Akayesi (https://josephakayesi.com)",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.4.0",
+    "@openzeppelin/test-helpers": "^0.5.13",
+    "@truffle/hdwallet-provider": "^1.5.0",
+    "@types/react-combine-reducers": "^1.0.0",
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^5.0.0-beta3",
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
+    "chai-bignumber": "^3.0.0",
+    "dotenv": "^10.0.0",
+    "framer-motion": "^4.1.17",
+    "identicon.js": "^2.3.3",
+    "ipfs-http-client": "^50.1.2",
+    "mocha": "^8.1.2",
+    "next": "^11.1.2",
+    "react": "^17.0.2",
+    "react-combine-reducers": "^1.1.1",
+    "react-dom": "^17.0.2",
+    "react-hot-toast": "^2.1.1",
+    "solc": "*",
+    "styled-components": "^5.3.1",
+    "web3": "^1.5.3",
+    "word-to-numbers": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.22",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.9.6",
+    "@types/react": "^17.0.24",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-styled-components": "^1.13.2",
+    "typechain": "^5.1.2",
+    "typescript": "^4.4.3"
+  },
+  "globals": [
+    "artifacts",
+    "contract",
+    "assert"
+  ]
+}

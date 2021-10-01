@@ -1,0 +1,7 @@
+node_modules
+build
+dist
+.gitignore
+config
+scripts
+package*.json
