@@ -8,6 +8,8 @@
     "migrate:ropsten": "truffle migrate --reset --network ropsten",
     "mint:dev": "truffle exec ./ethereum/scripts/mint.js --network development",
     "mint:ropsten": "truffle exec ./ethereum/scripts/mint.js --network ropsten",
+    "heroku-postbuild": "npm run build",
+    "start": "next start -p $PORT",
     "test": "truffle test",
     "dev": "next dev"
   },
