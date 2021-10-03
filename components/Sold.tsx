@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Sold = ({account}) => {
+const Sold = ({ account }) => {
     return (
         <>
             <span className="owner mt-2">
                 owner:
-                <a href={`https://etherscan.io/address/${account}`} target="_blank" className="text-link owner-account">
+                <a href={`https://etherscan.io/address/${account}`} target="_blank" rel="noreferrer" className="text-link owner-account">
                     {'  '}
                     {`${account.substring(0, 5)}...${account.substring(38, 42)}`}
                 </a>

@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image'
 import Identicon from 'identicon.js'
 import { motion } from 'framer-motion'
+import { GlobalContext } from '../context/GlobalContext'
 
 export default function Wallet({ account }) {
+    const context: any = useContext(GlobalContext)
+    const network = context.web3.network
+    console.log('CONTEXT HERE', context.web3.network)
+    
     return (
         <motion.div
             className="wallet rounded-pill justify-center d-flex justify-content-between py-1 px-1 align-items-center"
@@ -17,7 +22,15 @@ export default function Wallet({ account }) {
                 width={40}
                 height={40}
             />
-            <a href={`https://etherscan.io/address/${account}`} target="_blank" className="text-link account">
+            <a
+                href={
+                    ['main', 'private', 'wrong network'].includes(network.toLowerCase())
+                        ? `https://etherscan.io/address/${account}`
+                        : `https://${network}.etherscan.io/address/`
+                }
+                target="_blank"
+                rel="noreferrer"
+                className="text-link account">
                 {'  '}
                 {`${account.substring(0, 5)}...${account.substring(38, 42)}`}
             </a>

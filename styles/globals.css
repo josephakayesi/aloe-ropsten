@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap'); */
 
 :root {
@@ -7,6 +7,12 @@
   --error: #ff8359;
   --link: #ffa383;
 }
+
+/* @font-face {
+  font-family: "Raleway";
+  src: url("/public/fonts/Raleway/Raleway-VariableFont_wght.ttf");
+} */
+
 
 body {
   /* font-family: "Noto Serif"; */
@@ -116,7 +122,7 @@ body {
 .web3-wrapper {
   height: 2rem;
 }
-.connect-wallet {
+.connect-wallet, .get-metamask {
   padding: 0.65rem 1.1rem;
   background-color: var(--secondary);
   color: white;

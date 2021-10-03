@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, Dispatch } from 'react'
+import React, { useContext, Dispatch } from 'react'
 import { ArtworkType } from '../types/artwork.types'
 import { motion } from 'framer-motion'
 import { GlobalContext } from '../context/GlobalContext'
@@ -22,7 +22,7 @@ function ProductCard({ setSelectedImage, artwork }: ProductCardProps) {
                 </motion.div>
                 <h6 className="text-dark py-2">{artwork.name}</h6>
                 <div className="mt-3 info">
-                    <a target="_blank" href={artwork.metadata_url} className="d-block text-link owner-link">
+                    <a target="_blank" href={artwork.metadata_url} rel="noreferrer" className="d-block text-link owner-link">
                         link
                     </a>
                 </div>
