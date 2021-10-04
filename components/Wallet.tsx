@@ -7,8 +7,7 @@ import { GlobalContext } from '../context/GlobalContext'
 export default function Wallet({ account }) {
     const context: any = useContext(GlobalContext)
     const network = context.web3.network
-    console.log('CONTEXT HERE', context.web3.network)
-    
+
     return (
         <motion.div
             className="wallet rounded-pill justify-center d-flex justify-content-between py-1 px-1 align-items-center"
@@ -26,7 +25,7 @@ export default function Wallet({ account }) {
                 href={
                     ['main', 'private', 'wrong network'].includes(network.toLowerCase())
                         ? `https://etherscan.io/address/${account}`
-                        : `https://${network}.etherscan.io/address/`
+                        : `https://${network}.etherscan.io/${account}/`
                 }
                 target="_blank"
                 rel="noreferrer"
