@@ -148,20 +148,18 @@ class AloeService {
             const netId = await web3.eth.net.getId()
             const contract = await this.LoadContract(dispatch, web3, netId)
 
+            let toastId: string
+
             await contract.methods
                 .buy(id)
                 .send({ from: account, value: price })
+                .once('sending', () => (toastId = toast.loading('loading...', { duration: Infinity })))
                 .on('receipt', async r => {
-                    const purchase = this.Update(dispatch)
-
-                    toast.promise(purchase, {
-                        loading: 'loading',
-                        success: `congratulations! you've purchased an aloe collectible`,
-                        error: 'an error occurred whilst purchasing aloe collectible',
-                    })
+                    this.Update(dispatch)
+                    toast.success(`congratulations! you've purchased an aloe collectible`, { id: toastId, duration: 4000 })
                 })
                 .on('error', e => {
-                    toast.error(`unable to process request`)
+                    toast.error(`unable to process request`, { id: toastId, duration: 4000 })
                 })
         } catch (e) {
             console.log('error buying aloe artwork', e)
