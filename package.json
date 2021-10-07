@@ -8,8 +8,10 @@
     "start": "next start -p $PORT",
     "migrate:dev": "truffle migrate --reset --network development",
     "migrate:ropsten": "truffle migrate --reset --network ropsten",
+    "migrate:kovan": "truffle migrate --reset --network kovan",
     "mint:dev": "truffle exec ./ethereum/scripts/mint.js --network development",
     "mint:ropsten": "truffle exec ./ethereum/scripts/mint.js --network ropsten",
+    "mint:kovan": "truffle exec ./ethereum/scripts/mint.js --network kovan",
     "heroku-postbuild": "npm run build",
     "test": "truffle test",
     "dev": "next dev"
