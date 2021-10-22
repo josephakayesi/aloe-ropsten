@@ -64,7 +64,7 @@
   "cacheDirectories": [
     ".next/cache"
   ],
-  "engines":{
+  "engines": {
     "node": "14.17.1"
   }
 }
