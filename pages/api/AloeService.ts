@@ -1,3 +1,4 @@
+import WalletConnectProvider from '@walletconnect/web3-provider'
 import { ArtworkType } from '../../types/artwork.types'
 import Aloe from '../../ethereum/build/Aloe.json'
 import Web3 from 'web3'
@@ -6,10 +7,41 @@ import { data } from '../../ethereum/scripts/data'
 declare let window: any
 import toast from 'react-hot-toast'
 
+const provider = new WalletConnectProvider({
+    infuraId: '1dc840ea53f04c0daef5b4733e7924a1',
+    // rpc: {
+    //     1: 'https://mainnet.mycustomnode.com',
+    //     3: 'https://ropsten.mycustomnode.com',
+    //     100: 'https://dai.poa.network',
+    //     // ...
+    // },
+    // qrcodeModalOptions: {
+    //     mobileLinks: ['rainbow', 'metamask', 'argent', 'trust', 'imtoken', 'pillar'],
+    //     desktopLinks: ['encrypted ink'],
+    // },
+})
+// import Web3 from 'web3'
+
+// const provider = await provider.enable()
+
+// const web3 = new Web3(provider)
+
+// module.exports = web3
+
 class AloeService {
+    public provider: any
+
+    constructor(provider: WalletConnectProvider) {
+        // console.log(this.provider)
+        this.provider = provider
+        console.log(this.provider)
+    }
+
     async EnableWeb3() {
+        console.log('ENABLINGGG here', provider)
         try {
-            await window.ethereum.enable()
+            console.log('ENABLINGGG here', provider)
+            await provider.enable()
         } catch (e) {
             console.log(e)
         }
@@ -17,12 +49,16 @@ class AloeService {
 
     async LoadWeb3(dispatch) {
         try {
-            if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
-                // we are in the browser and metamask is running
-                const web3 = new Web3(window.ethereum)
-                dispatch(Actions.Web3Loaded(web3))
-                return web3
-            }
+            // if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
+            //     // we are in the browser and metamask is running
+            //     const web3 = new Web3(window.ethereum)
+            //     dispatch(Actions.Web3Loaded(web3))
+            //     return web3
+            // }
+            const web3 = new Web3(this.provider)
+            dispatch(Actions.Web3Loaded(web3))
+
+            return web3
         } catch (error) {
             console.log('error loading web3')
         }
@@ -167,4 +203,4 @@ class AloeService {
     }
 }
 
-export default new AloeService()
+export default new AloeService(provider)

@@ -23,6 +23,7 @@
     "@openzeppelin/test-helpers": "^0.5.13",
     "@truffle/hdwallet-provider": "^1.5.0",
     "@types/react-combine-reducers": "^1.0.0",
+    "@walletconnect/web3-provider": "^1.6.6",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^5.0.0-beta3",
     "chai": "^4.3.4",
@@ -40,7 +41,7 @@
     "react-hot-toast": "^2.1.1",
     "solc": "*",
     "styled-components": "^5.3.1",
-    "web3": "^1.5.3",
+    "web3": "^1.6.0",
     "word-to-numbers": "^1.0.0"
   },
   "devDependencies": {

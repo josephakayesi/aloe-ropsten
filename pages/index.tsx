@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { data } from '../ethereum/scripts/data'
-import web3 from '../ethereum/web3'
+// import web3 from '../ethereum/web3'
 import { GetServerSidePropsResult } from 'next'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
@@ -25,15 +25,26 @@ function Index({ dispatch, pageProps }) {
     }, [])
 
     async function loadEthereumData(dispatch) {
-        if (typeof window.ethereum !== 'undefined') {
+        // if (typeof window.ethereum !== 'undefined') {
+        //     await AloeService.Update(dispatch)
+        //     window.ethereum.on('accountsChanged', async () => {
+        //         await AloeService.Update(dispatch)
+        //     })
+        //     window.ethereum.on('chainChanged', async () => {
+        //         await AloeService.Update(dispatch)
+        //     })
+        // }
+
+        // if (typeof window.ethereum !== 'undefined') {
             await AloeService.Update(dispatch)
-            window.ethereum.on('accountsChanged', async () => {
+            console.log('check')
+            AloeService.provider.on('accountsChanged', async () => {
                 await AloeService.Update(dispatch)
             })
-            window.ethereum.on('chainChanged', async () => {
+            AloeService.provider.on('chainChanged', async () => {
                 await AloeService.Update(dispatch)
             })
-        }
+        // }
     }
 
     return (

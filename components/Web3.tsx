@@ -13,7 +13,7 @@ function Web3() {
 
         if(!context.web3.account && context.web3.network) return <ConnectWallet />
 
-        return <GetMetamask />
+        return <ConnectWallet />
     }
 
     return <div className="web3-wrapper">{renderWalletComponent()}</div>
