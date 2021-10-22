@@ -68,13 +68,16 @@ class AloeService {
     }
 
     async LoadContract(dispatch, web3, netId) {
+        let network: string = 'private'
+        // console.log('netId', netId)
         try {
+            // network = this.LoadDeployedContractNetwork(netId)
             const contract = new web3.eth.Contract(Aloe.abi, Aloe.networks[netId].address)
             dispatch(Actions.ContractLoaded(contract))
             return contract
         } catch (e) {
             console.log('error loading contract: ', e)
-            toast.error(`you are on the wrong network. please switch your network to main`)
+            toast.error(`you are on the wrong network. please switch your network to ${network.toLowerCase()}`)
 
             dispatch(Actions.ContractLoaded(null))
             return null
@@ -163,6 +166,23 @@ class AloeService {
                 })
         } catch (e) {
             console.log('error buying aloe artwork', e)
+        }
+    }
+
+    LoadDeployedContractNetwork(netId: number) {
+        switch (netId) {
+            case 1:
+                return 'main'
+            case 3:
+                return 'ropsten'
+            case 5:
+                return 'goerli'
+            case 4:
+                return 'rinkeby'
+            case 42:
+                return 'kovan'
+            default:
+                return 'private'
         }
     }
 }

@@ -10,8 +10,6 @@ function Gallery({ setSelectedImage }) {
     const renderGallery = (artworks: readonly ArtworkType[] | null, setSelectedImage): JSX.Element => {
         const items = artworks && artworks.map(artwork => <ProductCard key={artwork.id} setSelectedImage={setSelectedImage} artwork={artwork} />)
 
-        console.log(items)
-
         return <>{items}</>
     }
     return <div className="gallery">{renderGallery(artworks, setSelectedImage)}</div>
