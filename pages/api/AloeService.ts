@@ -1,3 +1,4 @@
+import WalletConnectProvider from '@walletconnect/web3-provider'
 import { ArtworkType } from '../../types/artwork.types'
 import Aloe from '../../ethereum/build/Aloe.json'
 import Web3 from 'web3'
@@ -6,10 +7,26 @@ import { data } from '../../ethereum/scripts/data'
 declare let window: any
 import toast from 'react-hot-toast'
 
+const provider = new WalletConnectProvider({
+    infuraId: '1dc840ea53f04c0daef5b4733e7924a1',
+})
+
+const getDevice = () => {}
 class AloeService {
+    public provider: any
+
+    constructor(provider: WalletConnectProvider) {
+        this.provider = provider
+    }
+
+    async GetDevice() {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return 'mobile'
+        return 'browser'
+    }
+
     async EnableWeb3() {
         try {
-            await window.ethereum.enable()
+            await provider.enable()
         } catch (e) {
             console.log(e)
         }
@@ -23,6 +40,11 @@ class AloeService {
                 dispatch(Actions.Web3Loaded(web3))
                 return web3
             }
+
+            const web3 = new Web3(this.provider)
+            dispatch(Actions.Web3Loaded(web3))
+
+            return web3
         } catch (error) {
             console.log('error loading web3')
         }
@@ -187,4 +209,4 @@ class AloeService {
     }
 }
 
-export default new AloeService()
+export default new AloeService(provider)
