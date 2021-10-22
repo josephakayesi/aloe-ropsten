@@ -11,7 +11,6 @@ const provider = new WalletConnectProvider({
     infuraId: '1dc840ea53f04c0daef5b4733e7924a1',
 })
 
-const getDevice = () => {}
 class AloeService {
     public provider: any
 
@@ -19,14 +18,19 @@ class AloeService {
         this.provider = provider
     }
 
-    async GetDevice() {
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return 'mobile'
-        return 'browser'
-    }
+    // GetDevice() {
+    //     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return 'mobile'
+    //     return 'desktop'
+    // }
 
-    async EnableWeb3() {
+    async EnableWeb3(device: string = 'mobile') {
         try {
-            await provider.enable()
+            if (device == 'mobile') {
+                await provider.enable()
+                return
+            }
+
+            return window.ethereum.enable()
         } catch (e) {
             console.log(e)
         }
@@ -90,16 +94,16 @@ class AloeService {
     }
 
     async LoadContract(dispatch, web3, netId) {
-        let network: string = 'private'
-        // console.log('netId', netId)
+        let availableNetworkChainIds = Object.keys(Aloe.networks)
+        const availableNetworkNames = this.LoadDeployedContractNetworks(availableNetworkChainIds)
+
         try {
-            // network = this.LoadDeployedContractNetwork(netId)
             const contract = new web3.eth.Contract(Aloe.abi, Aloe.networks[netId].address)
             dispatch(Actions.ContractLoaded(contract))
             return contract
         } catch (e) {
             console.log('error loading contract: ', e)
-            toast.error(`you are on the wrong network. please switch your network to ${network.toLowerCase()}`)
+            toast.error(`you are on the wrong network. please switch your network to this/these ${availableNetworkNames.join(', ')}`)
 
             dispatch(Actions.ContractLoaded(null))
             return null
@@ -191,21 +195,31 @@ class AloeService {
         }
     }
 
-    LoadDeployedContractNetwork(netId: number) {
-        switch (netId) {
-            case 1:
-                return 'main'
-            case 3:
-                return 'ropsten'
-            case 5:
-                return 'goerli'
-            case 4:
-                return 'rinkeby'
-            case 42:
-                return 'kovan'
-            default:
-                return 'private'
-        }
+    LoadDeployedContractNetworks(networks: string[]) {
+        let availableNetworks: string[]
+
+        networks.forEach(network => {
+            switch (network) {
+                case '1':
+                    availableNetworks.push('main')
+                case '3':
+                    availableNetworks.push('ropsten')
+                case '5':
+                    availableNetworks.push('goerli')
+
+                case '4':
+                    availableNetworks.push('rinkeby')
+
+                case '42':
+                    availableNetworks.push('kovan')
+
+                default:
+                    availableNetworks.push('private')
+            }
+        })
+
+        console.log(availableNetworks)
+        return availableNetworks
     }
 }
 
