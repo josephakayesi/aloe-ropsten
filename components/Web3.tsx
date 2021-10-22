@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import ConnectWallet from './ConnectWallet'
 import Wallet from './Wallet'
 import { GlobalContext } from '../context/GlobalContext'
@@ -6,7 +6,7 @@ import GetMetamask from './GetMetamask'
 
 function Web3() {
     const context: any = useContext(GlobalContext)
-
+   
     const renderWalletComponent = () => {
 
         if(context.web3.account) return <Wallet account={context.web3.account} />

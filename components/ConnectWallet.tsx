@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import AloeService from '../pages/api/AloeService'
 
 const ConnectWallet = () => {
+    const [device, setDevice] = useState('')
+
+    const getBrowserDevice = () => {
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            setDevice('mobile')
+          }else{
+           setDevice('browser')
+          }
+    }
+
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
             <motion.button

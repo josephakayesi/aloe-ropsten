@@ -9,16 +9,6 @@ import toast from 'react-hot-toast'
 
 const provider = new WalletConnectProvider({
     infuraId: '1dc840ea53f04c0daef5b4733e7924a1',
-    // rpc: {
-    //     1: 'https://mainnet.mycustomnode.com',
-    //     3: 'https://ropsten.mycustomnode.com',
-    //     100: 'https://dai.poa.network',
-    //     // ...
-    // },
-    // qrcodeModalOptions: {
-    //     mobileLinks: ['rainbow', 'metamask', 'argent', 'trust', 'imtoken', 'pillar'],
-    //     desktopLinks: ['encrypted ink'],
-    // },
 })
 // import Web3 from 'web3'
 
@@ -34,13 +24,10 @@ class AloeService {
     constructor(provider: WalletConnectProvider) {
         // console.log(this.provider)
         this.provider = provider
-        console.log(this.provider)
     }
 
     async EnableWeb3() {
-        console.log('ENABLINGGG here', provider)
         try {
-            console.log('ENABLINGGG here', provider)
             await provider.enable()
         } catch (e) {
             console.log(e)

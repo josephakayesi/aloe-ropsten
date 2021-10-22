@@ -20,6 +20,20 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const provider = new WalletConnectProvider({
   infuraId: "1dc840ea53f04c0daef5b4733e7924a1",
+  qrcode: true,
+  qrcodeModalOptions: {
+    // mobileLinks: [
+    //   "rainbow",
+    //   "metamask",
+    //   "argent",
+    //   "trust",
+    //   "imtoken",
+    //   "pillar",
+    // ],
+    desktopLinks: [
+      "metamask"
+    ]
+  },
 });
 
 await provider.enable();
