@@ -12,7 +12,7 @@
     "mint:dev": "truffle exec ./ethereum/scripts/mint.js --network development",
     "mint:ropsten": "truffle exec ./ethereum/scripts/mint.js --network ropsten",
     "mint:kovan": "truffle exec ./ethereum/scripts/mint.js --network kovan",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "yarn build",
     "test": "truffle test",
     "dev": "next dev"
   },
@@ -63,8 +63,5 @@
   ],
   "cacheDirectories": [
     ".next/cache"
-  ],
-  "engines": {
-    "node": "14.17.1"
-  }
+  ]
 }
