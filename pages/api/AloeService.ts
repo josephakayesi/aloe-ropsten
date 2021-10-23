@@ -84,7 +84,10 @@ class AloeService {
             return contract
         } catch (e) {
             console.log('error loading contract: ', e)
-            toast.error(`you are on the wrong network. please switch your network to this/these ${availableNetworkNames.join(', ')}`)
+            if (availableNetworkNames.length == 1) toast.error(`you are on the wrong network. please switch your network to ${availableNetworkNames[0]}`)
+
+            if (availableNetworkNames.length >= 2)
+                toast.error(`you are on the wrong network. please switch your network to one of these: ${availableNetworkNames.join(' or ')}`)
 
             dispatch(Actions.ContractLoaded(null))
             return null
@@ -179,21 +182,26 @@ class AloeService {
 
     LoadDeployedContractNetworks(networks: string[]) {
         let availableNetworks: string[] = []
-        console.log(networks)
         networks.forEach(network => {
             switch (network) {
                 case '1':
                     availableNetworks.push('main')
+                    break
                 case '3':
                     availableNetworks.push('ropsten')
+                    break
                 case '5':
                     availableNetworks.push('goerli')
+                    break
                 case '4':
                     availableNetworks.push('rinkeby')
+                    break
                 case '42':
                     availableNetworks.push('kovan')
+                    break
                 default:
                     availableNetworks.push('private')
+                    break
             }
         })
 
