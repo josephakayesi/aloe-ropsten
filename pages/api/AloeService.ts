@@ -6,31 +6,12 @@ import Actions from '../../store/actions'
 import { data } from '../../ethereum/scripts/data'
 declare let window: any
 import toast from 'react-hot-toast'
-
-const provider = new WalletConnectProvider({
-    infuraId: '1dc840ea53f04c0daef5b4733e7924a1',
-})
-
 class AloeService {
     public provider: any
 
-    constructor(provider: WalletConnectProvider) {
-        this.provider = provider
-    }
-
-    // GetDevice() {
-    //     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return 'mobile'
-    //     return 'desktop'
-    // }
-
-    async EnableWeb3(device: string = 'mobile') {
+    async EnableWeb3() {
         try {
-            if (device == 'mobile') {
-                await provider.enable()
-                return
-            }
-
-            return window.ethereum.enable()
+            await window.ethereum.enable()
         } catch (e) {
             console.log(e)
         }
@@ -125,6 +106,7 @@ class AloeService {
 
             if (account && contract) await this.LoadBalance(dispatch, web3, account)
         } catch (e) {
+            console.log(e)
             toast.error(`error connecting to blockchain. please check your network`)
         }
     }
@@ -196,8 +178,8 @@ class AloeService {
     }
 
     LoadDeployedContractNetworks(networks: string[]) {
-        let availableNetworks: string[]
-
+        let availableNetworks: string[] = []
+        console.log(networks)
         networks.forEach(network => {
             switch (network) {
                 case '1':
@@ -206,21 +188,17 @@ class AloeService {
                     availableNetworks.push('ropsten')
                 case '5':
                     availableNetworks.push('goerli')
-
                 case '4':
                     availableNetworks.push('rinkeby')
-
                 case '42':
                     availableNetworks.push('kovan')
-
                 default:
                     availableNetworks.push('private')
             }
         })
 
-        console.log(availableNetworks)
         return availableNetworks
     }
 }
 
-export default new AloeService(provider)
+export default new AloeService()

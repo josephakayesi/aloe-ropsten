@@ -13,7 +13,6 @@ import Loader from '../components/Loader'
 import Toaster from '../components/Toaster'
 import AloeService from './api/AloeService'
 import { GlobalContext } from '../context/GlobalContext'
-import useMobileDetect from '../hooks/useMobileDetect'
 
 declare let window: any
 
