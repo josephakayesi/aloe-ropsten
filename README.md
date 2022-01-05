@@ -27,7 +27,7 @@ Create a .env file, create and update parameters as seen below
 - [Solidiy](https://docs.soliditylang.org/en/v0.7.4/) - Smart contract language
 - [Ganache](https://www.trufflesuite.com/ganache) - Local blockchain network
 - [Web3](https://web3js.readthedocs.io/en/v1.3.0/) - Library to interact with ethereum nodes
-- [JavaScript](https://www.javascript.com/) - Logic for minting testing smart contracts
+- [JavaScript](https://www.javascript.com/) - Logic for minting tokens and testing smart contracts
 - [Typescript](https://www.typescriptlang.org/) - Language used with frontend framework
 - [Infura](https://infura.io/) - Connection to ethereum networks
 
