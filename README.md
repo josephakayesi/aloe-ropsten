@@ -12,9 +12,9 @@ Create a .env file, create and update parameters as seen below
 
 | Environemt Key        | Description                                       | Example                                                                                |
 | :-------------------- | :------------------------------------------------ | :------------------------------------------------------------------------------------- |
-| NODE_ENV              | Node environment                                  | production                                                                             |
+| NODE_ENV              | Node environment                                  | development                                                                            |
 | PORT                  | Node server port                                  | 5000                                                                                   |
-| PRIVATE_KEYS          | Ethereum wallet privare keys                      | mongodb://localhost/mgiaccra                                                           |
+| PRIVATE_KEYS          | Ethereum wallet private keys                      | 8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f                       |
 | INFURA_ID             | Infura account id                                 | 7e40f09ch714db5s9061bcc95e58c72 |
 
 
