@@ -6,6 +6,7 @@
   "scripts": {
     "build": "next build",
     "start": "next start -p $PORT",
+    "compile": "truffle compile",
     "migrate:dev": "truffle migrate --reset --network development",
     "migrate:ropsten": "truffle migrate --reset --network ropsten",
     "migrate:kovan": "truffle migrate --reset --network kovan",
